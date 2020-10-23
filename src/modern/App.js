@@ -6,8 +6,8 @@
  */
 
 import React from 'react';
-import {useState, Suspense} from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { useState, Suspense } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
@@ -27,14 +27,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <ThemeContext.Provider value={theme}>
-        <div style={{fontFamily: 'sans-serif'}}>
+        <div style={{ fontFamily: 'sans-serif' }}>
           <div
             style={{
               margin: 20,
               padding: 20,
               border: '1px solid black',
               minHeight: 300,
-            }}>
+            }}
+          >
             <button onClick={handleToggleClick}>Toggle Theme Context</button>
             <br />
             <Suspense fallback={<Spinner />}>
@@ -55,5 +56,5 @@ export default function App() {
 }
 
 function Spinner() {
-  return null;
+  return <span>Loading...</span>;
 }

@@ -6,9 +6,9 @@
  */
 
 import React from 'react';
-import {useContext, useMemo, useRef, useLayoutEffect} from 'react';
-import {__RouterContext} from 'react-router';
-import {ReactReduxContext} from 'react-redux';
+import { useContext, useMemo, useRef, useLayoutEffect } from 'react';
+import { __RouterContext } from 'react-router';
+import { ReactReduxContext } from 'react-redux';
 
 import ThemeContext from './shared/ThemeContext';
 
@@ -27,7 +27,7 @@ export default function lazyLegacyRoot(getLegacyComponent) {
 
   return function Wrapper(props) {
     const createLegacyRoot = readModule(rendererModule, () =>
-      import('../legacy/createLegacyRoot')
+      import('../legacy/createLegacyRoot'),
     ).default;
     const Component = readModule(componentModule, getLegacyComponent).default;
     const containerRef = useRef(null);
@@ -44,7 +44,7 @@ export default function lazyLegacyRoot(getLegacyComponent) {
         router,
         reactRedux,
       }),
-      [theme, router, reactRedux]
+      [theme, router, reactRedux],
     );
 
     // Create/unmount.
@@ -65,7 +65,7 @@ export default function lazyLegacyRoot(getLegacyComponent) {
       }
     }, [Component, props, context]);
 
-    return <div style={{display: 'contents'}} ref={containerRef} />;
+    return <div style={{ display: 'contents' }} ref={containerRef} />;
   };
 }
 
@@ -81,20 +81,21 @@ function readModule(record, createPromise) {
   }
   if (!record.promise) {
     record.promise = createPromise().then(
-      value => {
-        if (record.status === 'pending') {
-          record.status = 'fulfilled';
-          record.promise = null;
-          record.result = value;
-        }
-      },
-      error => {
+      (value) =>
+        setTimeout(() => {
+          if (record.status === 'pending') {
+            record.status = 'fulfilled';
+            record.promise = null;
+            record.result = value;
+          }
+        }, 2000),
+      (error) => {
         if (record.status === 'pending') {
           record.status = 'rejected';
           record.promise = null;
           record.result = error;
         }
-      }
+      },
     );
   }
   throw record.promise;

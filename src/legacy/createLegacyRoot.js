@@ -14,7 +14,7 @@ import ThemeContext from './shared/ThemeContext';
 // Note: this is a semi-private API, but it's ok to use it
 // if we never inspect the values, and only pass them through.
 import {__RouterContext} from 'react-router';
-import {Provider} from 'react-redux';
+import {ReactReduxContext} from 'react-redux';
 
 // Pass through every context required by this tree.
 // The context object is populated in src/modern/withLegacyRoot.
@@ -27,7 +27,7 @@ function Bridge({children, context}) {
           we would instead import {ReactReduxContext} from 'react-redux'
           and render <ReactReduxContext.Provider value={context.reactRedux}>.
         */}
-        <Provider store={context.reactRedux.store}>{children}</Provider>
+        <ReactReduxContext.Provider value={context.reactRedux}>{children}</ReactReduxContext.Provider>
       </__RouterContext.Provider>
     </ThemeContext.Provider>
   );

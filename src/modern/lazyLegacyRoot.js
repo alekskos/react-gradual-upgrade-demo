@@ -1,10 +1,3 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 import React from 'react';
 import { useContext, useMemo, useRef, useLayoutEffect } from 'react';
 import { __RouterContext } from 'react-router';
@@ -32,9 +25,6 @@ export default function lazyLegacyRoot(getLegacyComponent) {
     const Component = readModule(componentModule, getLegacyComponent).default;
     const containerRef = useRef(null);
     const rootRef = useRef(null);
-
-    // Populate every contexts we want the legacy subtree to see.
-    // Then in src/legacy/createLegacyRoot we will apply them.
     const theme = useContext(ThemeContext);
     const router = useContext(__RouterContext);
     const reactRedux = useContext(ReactReduxContext);
@@ -47,7 +37,6 @@ export default function lazyLegacyRoot(getLegacyComponent) {
       [theme, router, reactRedux],
     );
 
-    // Create/unmount.
     useLayoutEffect(() => {
       if (!rootRef.current) {
         rootRef.current = createLegacyRoot(containerRef.current);

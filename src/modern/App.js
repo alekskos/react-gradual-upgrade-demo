@@ -5,7 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
 import { useState, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 

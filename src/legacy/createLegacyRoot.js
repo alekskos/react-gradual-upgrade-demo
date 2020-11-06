@@ -7,7 +7,6 @@
 
 /* eslint-disable react/jsx-pascal-case */
 
-import React from 'react';
 import ReactDOM from 'react-dom';
 import ThemeContext from './shared/ThemeContext';
 

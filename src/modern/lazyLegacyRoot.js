@@ -1,4 +1,3 @@
-import React from 'react';
 import { useContext, useMemo, useRef, useLayoutEffect } from 'react';
 import { __RouterContext } from 'react-router';
 import { ReactReduxContext } from 'react-redux';

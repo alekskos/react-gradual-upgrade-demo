@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import {Component} from 'react';
+import { version, Component } from 'react';
+
 import {findDOMNode} from 'react-dom';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -32,7 +32,7 @@ class AboutSection extends Component {
           <div style={{border: '1px dashed black', padding: 20}}>
             <h3>src/legacy/Greeting.js</h3>
             <h4 style={{color: theme}}>
-              This component is rendered by the nested React ({React.version}).
+              This component is rendered by the nested React ({version}).
             </h4>
             <Clock />
             <p>
